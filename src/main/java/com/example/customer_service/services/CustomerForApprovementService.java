@@ -1,9 +1,9 @@
-package com.example.customer_service.Services;
+package com.example.customer_service.services;
 
 import java.util.List;
 
 import com.example.customer_service.dtos.CombinedCustomerDTO;
-import com.example.customer_service.model.Customer;
+
 
 public interface CustomerForApprovementService {
 	

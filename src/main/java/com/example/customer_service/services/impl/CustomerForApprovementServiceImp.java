@@ -1,4 +1,4 @@
-package com.example.customer_service.ServicesImp;
+package com.example.customer_service.services.impl;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.LookupOperation;
 import org.springframework.stereotype.Service;
 
-import com.example.customer_service.Services.CustomerForApprovementService;
 import com.example.customer_service.dtos.CombinedCustomerDTO;
+import com.example.customer_service.services.CustomerForApprovementService;
 
 @Service
 public class CustomerForApprovementServiceImp implements CustomerForApprovementService {

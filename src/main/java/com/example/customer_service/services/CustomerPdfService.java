@@ -1,6 +1,6 @@
-package com.example.customer_service.Services;
+package com.example.customer_service.services;
 
-import com.example.customer_service.customExceptions.CustomerPdfNotFoundException;
+import com.example.customer_service.custom_exception.CustomerPdfNotFoundException;
 import com.example.customer_service.model.CustomerPdf;
 
 public interface CustomerPdfService {

@@ -1,4 +1,4 @@
-package com.example.customer_service.customExceptions;
+package com.example.customer_service.custom_exception;
 
 public class CustomerPdfNotFoundException extends Exception {
 
@@ -9,7 +9,7 @@ public class CustomerPdfNotFoundException extends Exception {
 
 	public CustomerPdfNotFoundException() {
 		super("Pdf Not Found 😢");
-		// TODO Auto-generated constructor stub
+
 	}
 
 
