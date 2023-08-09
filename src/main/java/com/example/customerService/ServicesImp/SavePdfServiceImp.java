@@ -10,7 +10,8 @@ import com.example.customerService.Services.CustomerPdfService;
 import com.example.customerService.Services.S3FileService;
 import com.example.customerService.Services.SavePdfService;
 import com.example.customerService.customExceptions.S3FileSavingException;
-import com.example.customerService.dtos.CustomerPdfDto;
+import com.example.customerService.dtos.CustomerForApprovemetnDto;
+
 import com.example.customerService.model.CustomerPdf;
 
 
@@ -31,16 +32,16 @@ public class SavePdfServiceImp implements SavePdfService {
 	private String saveIn;
 
 	@Override
-	public String savePdf(CustomerPdfDto customerPdfDto) throws IOException, S3FileSavingException {
+	public String savePdf(CustomerForApprovemetnDto customerForApprovemetnDto) throws IOException, S3FileSavingException {
 		
 		
 		if (saveIn.equals("mongodb")) {
 			
 //			System.out.println("mongodb");
 
-			CustomerPdf customerPdf = CustomerPdf.builder().email(customerPdfDto.getEmail())
-					.isSigned(customerPdfDto.isSigned()).signBy(customerPdfDto.getSignBy())
-					.pdfData(customerPdfDto.getPdfData().getBytes()).build();
+			CustomerPdf customerPdf = CustomerPdf.builder().email(customerForApprovemetnDto.getEmail())
+					.isSigned(customerForApprovemetnDto.isSigned()).signBy(customerForApprovemetnDto.getSignBy())
+					.pdfData(customerForApprovemetnDto.getPdfData().getBytes()).build();
 
 			customerPdfService.addCustomerPdf(customerPdf);
 
@@ -48,7 +49,7 @@ public class SavePdfServiceImp implements SavePdfService {
 
 		else if (saveIn.equals("s3")) {
 
-			s3FileService.saveFile(customerPdfDto.getPdfData(), customerPdfDto.getEmail(), bucketName);
+			s3FileService.saveFile(customerForApprovemetnDto.getPdfData(), customerForApprovemetnDto.getEmail(), bucketName);
 
 		}
 		return "customer save with pdf in " + saveIn  ;
