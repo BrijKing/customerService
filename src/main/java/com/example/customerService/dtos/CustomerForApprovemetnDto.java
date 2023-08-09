@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerPdfDto {
+public class CustomerForApprovemetnDto {
 	
 	
 	private String email;
