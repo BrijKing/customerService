@@ -13,16 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.customer_service.Services.CustomerForApprovementService;
-import com.example.customer_service.Services.CustomerPdfService;
-import com.example.customer_service.Services.SavePdfService;
-import com.example.customer_service.customExceptions.CustomerPdfNotFoundException;
-import com.example.customer_service.customExceptions.S3FileSavingException;
+import com.example.customer_service.custom_exception.CustomerPdfNotFoundException;
+import com.example.customer_service.custom_exception.S3FileSavingException;
 import com.example.customer_service.dtos.CombinedCustomerDTO;
 import com.example.customer_service.dtos.CustomerForApprovemetnDto;
-import com.example.customer_service.model.Customer;
 import com.example.customer_service.model.CustomerPdf;
-import com.netflix.discovery.converters.Auto;
+import com.example.customer_service.services.CustomerForApprovementService;
+import com.example.customer_service.services.CustomerPdfService;
+import com.example.customer_service.services.SavePdfService;
 
 @RestController
 @RequestMapping("customer/forApprovement")
@@ -42,7 +40,7 @@ public class CustomerForApprovementController {
 			throws IOException, S3FileSavingException {
 
 		savePdfService.savePdf(customerForApprovemetnDto);
-		return new ResponseEntity<String>("customer added successfully!!", HttpStatus.CREATED);
+		return new ResponseEntity<>("customer added successfully!!", HttpStatus.CREATED);
 
 	}
 

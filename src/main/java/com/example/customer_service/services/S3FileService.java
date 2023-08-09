@@ -1,12 +1,12 @@
-package com.example.customer_service.Services;
+package com.example.customer_service.services;
 
 import java.io.IOException;
 
 import org.bson.types.Binary;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.customer_service.customExceptions.FileDownloadingException;
-import com.example.customer_service.customExceptions.S3FileSavingException;
+import com.example.customer_service.custom_exception.FileDownloadingException;
+import com.example.customer_service.custom_exception.S3FileSavingException;
 
 public interface S3FileService {
 

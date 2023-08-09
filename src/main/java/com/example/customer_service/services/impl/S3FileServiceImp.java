@@ -1,4 +1,4 @@
-package com.example.customer_service.ServicesImp;
+package com.example.customer_service.services.impl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,13 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
-import com.example.customer_service.Services.S3FileService;
-import com.example.customer_service.customExceptions.ConvertMultipartFileToFileException;
-import com.example.customer_service.customExceptions.FileDownloadingException;
-import com.example.customer_service.customExceptions.S3FileSavingException;
+import com.example.customer_service.custom_exception.ConvertMultipartFileToFileException;
+import com.example.customer_service.custom_exception.FileDownloadingException;
+import com.example.customer_service.custom_exception.S3FileSavingException;
+import com.example.customer_service.services.S3FileService;
 
 
 @Service
@@ -24,7 +23,7 @@ public class S3FileServiceImp implements S3FileService {
 	private final AmazonS3 s3;
 
 	public S3FileServiceImp(AmazonS3 s3) {
-		// TODO Auto-generated constructor stub
+
 		this.s3 = s3;
 	}
 
@@ -36,7 +35,7 @@ public class S3FileServiceImp implements S3FileService {
 		try {
 			return new Binary(objectContent.readAllBytes());
 		} catch (Exception e) {
-			// TODO: handle exception
+
 			throw new FileDownloadingException();
 			
 		}
@@ -50,7 +49,7 @@ public class S3FileServiceImp implements S3FileService {
 		while (true) {
 			try {
 				File file1 = convertMultiPartToFile(file);
-				PutObjectResult putObjectResult = s3.putObject(bucketName, filename, file1);
+				s3.putObject(bucketName, filename, file1);
 				return "File Uploaded successfully!!";
 			} catch (Exception e) {
 	
@@ -61,21 +60,17 @@ public class S3FileServiceImp implements S3FileService {
 	}
 
 	private File convertMultiPartToFile(MultipartFile file) throws ConvertMultipartFileToFileException {
-		
-		try {
-			
-			File convFile = new File(file.getOriginalFilename());
-			FileOutputStream fos = new FileOutputStream(convFile);
-			fos.write(file.getBytes());
-			fos.close();
-			return convFile;
-			
-		}catch (Exception e) {
-			// TODO: handle exception
-			throw new ConvertMultipartFileToFileException();
-		}
-
-	
+	    try {
+	        File convFile = new File(file.getOriginalFilename());
+	        
+	        try (FileOutputStream fos = new FileOutputStream(convFile)) {
+	            fos.write(file.getBytes());
+	        }
+	        
+	        return convFile;
+	    } catch (Exception e) {
+	        throw new ConvertMultipartFileToFileException();
+	    }
 	}
 
 }

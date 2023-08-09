@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.customer_service.Services.CustomerService;
+import com.example.customer_service.dtos.CustomerDto;
 import com.example.customer_service.model.Customer;
+import com.example.customer_service.services.CustomerService;
 
 @RestController
 @RequestMapping("customer")
@@ -22,7 +23,7 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	@PostMapping("/add")
-	public ResponseEntity<String> addCustomer(@RequestBody Customer customer){
+	public ResponseEntity<String> addCustomer(@RequestBody CustomerDto customer){
 		
 		try {
 			customerService.addCustomer(customer);

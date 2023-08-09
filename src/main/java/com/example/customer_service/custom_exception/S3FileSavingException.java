@@ -1,4 +1,4 @@
-package com.example.customer_service.customExceptions;
+package com.example.customer_service.custom_exception;
 
 public class S3FileSavingException extends Exception {
 	
