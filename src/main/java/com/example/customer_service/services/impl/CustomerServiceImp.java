@@ -3,6 +3,9 @@ package com.example.customer_service.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.customer_service.dtos.CustomerDto;
@@ -36,6 +39,13 @@ public class CustomerServiceImp implements CustomerService {
 	public List<Customer> getAllCustomer() {
 		
 		return customerRepository.findAll();
+	}
+
+	@Override
+	public Page<Customer> getPaginatedResults(int page) {
+		
+		Pageable pageable = PageRequest.of(page, 5);
+		return customerRepository.findAll(pageable);
 	}
 
 }
