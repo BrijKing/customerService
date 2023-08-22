@@ -50,7 +50,7 @@ public class CustomerServiceImp implements CustomerService {
 	}
 
 	@Override
-	public Customer findCustomerByEmai(String email) throws CustomerNotFoundException {
+	public List<Customer> findCustomerByEmai(String email) throws CustomerNotFoundException {
 		
 		List<Customer> customer = customerRepository.findByEmail(email);
 		
@@ -58,7 +58,7 @@ public class CustomerServiceImp implements CustomerService {
 			throw new CustomerNotFoundException();
 		}
 		else {
-			return customer.get(0);
+			return customer;
 		}
 	}
 
