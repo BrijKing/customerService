@@ -51,7 +51,7 @@ public class CustomerController {
 	@GetMapping("/getCustomer/{email}")
 	public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email) throws CustomerNotFoundException{
 		
-		return new ResponseEntity<>(customerService.findCustomerByEmai(email),HttpStatus.FOUND);
+		return new ResponseEntity<>(customerService.findCustomerByEmai(email),HttpStatus.OK);
 	}
 	
 
