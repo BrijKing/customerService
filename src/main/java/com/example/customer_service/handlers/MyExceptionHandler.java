@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.customer_service.custom_exception.ConvertMultipartFileToFileException;
+import com.example.customer_service.custom_exception.CustomerNotFoundException;
 import com.example.customer_service.custom_exception.CustomerPdfNotFoundException;
 import com.example.customer_service.custom_exception.FileDownloadingException;
 import com.example.customer_service.custom_exception.S3FileSavingException;
@@ -31,6 +32,11 @@ public class MyExceptionHandler {
     @ExceptionHandler(S3FileSavingException.class)
     public ResponseEntity<String> handleS3FileSavingException(S3FileSavingException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ResponseEntity<String> handleCustomerNotFoundException(CustomerNotFoundException ex){
+    	return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 }
