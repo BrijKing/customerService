@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.customer_service.custom_exception.CustomerNotFoundException;
 import com.example.customer_service.dtos.CustomerDto;
 import com.example.customer_service.model.Customer;
 import com.example.customer_service.repositories.CustomerRepository;
@@ -49,9 +50,16 @@ public class CustomerServiceImp implements CustomerService {
 	}
 
 	@Override
-	public Customer findCustomerByEmai(String email) {
-		// TODO Auto-generated method stub
-		return customerRepository.findByEmail(email).get(0);
+	public Customer findCustomerByEmai(String email) throws CustomerNotFoundException {
+		
+		List<Customer> customer = customerRepository.findByEmail(email);
+		
+		if(customer.isEmpty()) {
+			throw new CustomerNotFoundException();
+		}
+		else {
+			return customer.get(0);
+		}
 	}
 
 }

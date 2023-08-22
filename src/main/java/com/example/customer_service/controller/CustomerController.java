@@ -1,6 +1,6 @@
 package com.example.customer_service.controller;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.customer_service.custom_exception.CustomerNotFoundException;
 import com.example.customer_service.dtos.CustomerDto;
 import com.example.customer_service.model.Customer;
 import com.example.customer_service.services.CustomerService;
@@ -48,7 +49,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/getCustomer/{email}")
-	public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email){
+	public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email) throws CustomerNotFoundException{
 		
 		return new ResponseEntity<>(customerService.findCustomerByEmai(email),HttpStatus.FOUND);
 	}
