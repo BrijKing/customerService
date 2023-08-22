@@ -16,7 +16,7 @@ public interface CustomerService {
 	
 	Page<Customer> getPaginatedResults(int page);
 	
-	Customer findCustomerByEmai(String email) throws CustomerNotFoundException;
+	List<Customer> findCustomerByEmai(String email) throws CustomerNotFoundException;
 	
 	
 
