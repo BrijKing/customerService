@@ -48,4 +48,10 @@ public class CustomerServiceImp implements CustomerService {
 		return customerRepository.findAll(pageable);
 	}
 
+	@Override
+	public Customer findCustomerByEmai(String email) {
+		// TODO Auto-generated method stub
+		return customerRepository.findByEmail(email).get(0);
+	}
+
 }

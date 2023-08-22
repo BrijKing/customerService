@@ -15,6 +15,8 @@ public interface CustomerService {
 	
 	Page<Customer> getPaginatedResults(int page);
 	
+	Customer findCustomerByEmai(String email);
+	
 	
 
 }
