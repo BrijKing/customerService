@@ -4,12 +4,12 @@ import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.example.customer_service.model.CustomerPdf;
+import com.example.customer_service.model.CustomerForApprovement;
 
-public interface CustomerPdfRepository extends MongoRepository<CustomerPdf , String> {
+public interface CustomerPdfRepository extends MongoRepository<CustomerForApprovement, String> {
 	
 	
-	Optional<CustomerPdf> findByEmail(String email);
+	Optional<CustomerForApprovement> findByEmail(String email);
 	
 
 }

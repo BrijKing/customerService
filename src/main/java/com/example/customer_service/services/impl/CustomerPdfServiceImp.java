@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.customer_service.custom_exception.CustomerPdfNotFoundException;
-import com.example.customer_service.model.CustomerPdf;
+import com.example.customer_service.model.CustomerForApprovement;
 import com.example.customer_service.repositories.CustomerPdfRepository;
 import com.example.customer_service.services.CustomerPdfService;
 
@@ -15,13 +15,13 @@ public class CustomerPdfServiceImp implements CustomerPdfService {
 	CustomerPdfRepository customerPdfRepository;
 
 	@Override
-	public CustomerPdf addCustomerPdf(CustomerPdf customerPdf) {
+	public CustomerForApprovement addCustomerPdf(CustomerForApprovement customerForApprovement) {
 
-		return customerPdfRepository.save(customerPdf);
+		return customerPdfRepository.save(customerForApprovement);
 	}
 
 	@Override
-	public CustomerPdf getCustomerPdfByCustomerEmail(String email) throws CustomerPdfNotFoundException {
+	public CustomerForApprovement getCustomerPdfByCustomerEmail(String email) throws CustomerPdfNotFoundException {
 
 		return customerPdfRepository.findByEmail(email).orElseThrow(CustomerPdfNotFoundException::new);
 

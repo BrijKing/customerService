@@ -17,7 +17,7 @@ import com.example.customer_service.custom_exception.CustomerPdfNotFoundExceptio
 import com.example.customer_service.custom_exception.S3FileSavingException;
 import com.example.customer_service.dtos.CombinedCustomerDTO;
 import com.example.customer_service.dtos.CustomerForApprovemetnDto;
-import com.example.customer_service.model.CustomerPdf;
+import com.example.customer_service.model.CustomerForApprovement;
 import com.example.customer_service.services.CustomerForApprovementService;
 import com.example.customer_service.services.CustomerPdfService;
 import com.example.customer_service.services.SavePdfService;
@@ -45,7 +45,7 @@ public class CustomerForApprovementController {
 	}
 
 	@GetMapping("/getCustomer/{email}")
-	public ResponseEntity<CustomerPdf> getCustomerPdfByCustomerEmail(@PathVariable String email)
+	public ResponseEntity<CustomerForApprovement> getCustomerPdfByCustomerEmail(@PathVariable String email)
 			throws CustomerPdfNotFoundException {
 
 		return new ResponseEntity<>(customerPdfService.getCustomerPdfByCustomerEmail(email), HttpStatus.FOUND);

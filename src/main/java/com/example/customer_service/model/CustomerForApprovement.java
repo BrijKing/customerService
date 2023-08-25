@@ -1,24 +1,24 @@
 package com.example.customer_service.model;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Document
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CustomerPdf {
+public class CustomerForApprovement {
 	
 	
 	@Id
 	private String id;
-	
+
+	@Indexed(unique = true)
 	private String email;
 	
 	private boolean isSigned;
