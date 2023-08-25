@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.customer_service.custom_exception.S3FileSavingException;
 import com.example.customer_service.dtos.CustomerForApprovemetnDto;
-import com.example.customer_service.model.CustomerPdf;
+import com.example.customer_service.model.CustomerForApprovement;
 import com.example.customer_service.services.CustomerPdfService;
 import com.example.customer_service.services.S3FileService;
 import com.example.customer_service.services.SavePdfService;
@@ -38,11 +38,11 @@ public class SavePdfServiceImp implements SavePdfService {
 			
 
 
-			CustomerPdf customerPdf = CustomerPdf.builder().email(customerForApprovemetnDto.getEmail())
+			CustomerForApprovement customerForApprovement = CustomerForApprovement.builder().email(customerForApprovemetnDto.getEmail())
 					.isSigned(customerForApprovemetnDto.isSigned()).signBy(customerForApprovemetnDto.getSignBy())
 					.pdfData(customerForApprovemetnDto.getPdfData().getBytes()).build();
 
-			customerPdfService.addCustomerPdf(customerPdf);
+			customerPdfService.addCustomerPdf(customerForApprovement);
 
 		}
 

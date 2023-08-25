@@ -1,12 +1,12 @@
 package com.example.customer_service.services;
 
 import com.example.customer_service.custom_exception.CustomerPdfNotFoundException;
-import com.example.customer_service.model.CustomerPdf;
+import com.example.customer_service.model.CustomerForApprovement;
 
 public interface CustomerPdfService {
 	
-	CustomerPdf addCustomerPdf(CustomerPdf customerPdf);
+	CustomerForApprovement addCustomerPdf(CustomerForApprovement customerForApprovement);
 	
-	CustomerPdf getCustomerPdfByCustomerEmail(String email) throws CustomerPdfNotFoundException;
+	CustomerForApprovement getCustomerPdfByCustomerEmail(String email) throws CustomerPdfNotFoundException;
 
 }
