@@ -3,6 +3,7 @@ package com.example.customer_service.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.example.customer_service.dtos.PendingCustomersDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,13 +49,19 @@ public class CustomerForApprovementController {
 	public ResponseEntity<CustomerForApprovement> getCustomerPdfByCustomerEmail(@PathVariable String email)
 			throws CustomerPdfNotFoundException {
 
-		return new ResponseEntity<>(customerPdfService.getCustomerPdfByCustomerEmail(email), HttpStatus.FOUND);
+		return new ResponseEntity<>(customerPdfService.getCustomerPdfByCustomerEmail(email), HttpStatus.OK);
 	}
 	
 	@GetMapping("/getCombinedData")
 	public ResponseEntity<List<CombinedCustomerDTO>> getCombinedData() {
 
-		return new ResponseEntity<>(customerForApprovementService.combineCollections(), HttpStatus.FOUND);
+		return new ResponseEntity<>(customerForApprovementService.combineCollections(), HttpStatus.OK);
+	}
+
+	@GetMapping("/getAll")
+	public ResponseEntity<List<PendingCustomersDto>> getAllPendingCustomers() {
+
+		return new ResponseEntity<>(customerForApprovementService.getAllPendingCustomers(), HttpStatus.OK);
 	}
 
 }
