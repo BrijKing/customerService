@@ -48,11 +48,13 @@ public class CustomerForApprovementServiceImp implements CustomerForApprovementS
 
         return customerPdfRepository.findAll().stream().map(customer -> {
             PendingCustomersDto pendingCustomersDto = new PendingCustomersDto();
-            pendingCustomersDto.setEmail(customer.getEmail());
-            pendingCustomersDto.setSigned(customer.isSigned());
-            pendingCustomersDto.setSignBy(customer.getSignBy());
-            return pendingCustomersDto;
-        }).toList();
+            if (!customer.isSigned()) {
+                pendingCustomersDto.setEmail(customer.getEmail());
+                pendingCustomersDto.setSigned(customer.isSigned());
+                pendingCustomersDto.setSignBy(customer.getSignBy());
+                return pendingCustomersDto;
+            } else return null;
+        }).filter(pendingCustomersDto -> pendingCustomersDto != null).toList();
     }
 
 }
