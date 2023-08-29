@@ -57,4 +57,23 @@ public class CustomerForApprovementServiceImp implements CustomerForApprovementS
         }).filter(pendingCustomersDto -> pendingCustomersDto != null).toList();
     }
 
+    @Override
+    public void approveCustomer(String email) {
+        customerPdfRepository.findByEmail(email).ifPresent(customerPdf -> {
+            customerPdf.setSigned(true);
+            customerPdfRepository.save(customerPdf);
+        });
+
+    }
+
+    @Override
+    public void rejectCustomer(String email) {
+        customerPdfRepository.findByEmail(email).ifPresent(customerPdf -> {
+            customerPdf.setSigned(false);
+            customerPdfRepository.save(customerPdf);
+        });
+
+
+    }
+
 }
