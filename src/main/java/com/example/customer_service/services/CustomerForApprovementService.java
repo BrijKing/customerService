@@ -12,4 +12,8 @@ public interface CustomerForApprovementService {
 
 	 List<PendingCustomersDto> getAllPendingCustomers();
 
+	 void approveCustomer(String email);
+
+	 void rejectCustomer(String email);
+
 }

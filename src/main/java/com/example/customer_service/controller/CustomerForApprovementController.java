@@ -7,12 +7,7 @@ import com.example.customer_service.dtos.PendingCustomersDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.customer_service.custom_exception.CustomerPdfNotFoundException;
 import com.example.customer_service.custom_exception.S3FileSavingException;
@@ -63,5 +58,20 @@ public class CustomerForApprovementController {
 
 		return new ResponseEntity<>(customerForApprovementService.getAllPendingCustomers(), HttpStatus.OK);
 	}
+
+	@PutMapping("/approve/{email}")
+	public ResponseEntity<String> approveCustomer(@PathVariable String email) {
+
+		customerForApprovementService.approveCustomer(email);
+		return new ResponseEntity<>("customer approved successfully!!", HttpStatus.OK);
+	}
+
+	@PutMapping("/reject/{email}")
+	public ResponseEntity<String> rejectCustomer(@PathVariable String email) {
+
+		customerForApprovementService.rejectCustomer(email);
+		return new ResponseEntity<>("customer rejected successfully!!", HttpStatus.OK);
+	}
+
 
 }
